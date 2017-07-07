@@ -1,0 +1,16 @@
+[
+{
+  "modid": "fmhammers",
+  "name": "Fighty-Mine Hammers",
+  "description": "Hammers for Mining and Fighting",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["IvanSteklow"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
