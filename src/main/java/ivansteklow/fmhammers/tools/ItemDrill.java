@@ -12,21 +12,19 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemHammer extends ItemPickaxe {
+public class ItemDrill extends ItemPickaxe {
 
 	int breakRadius = 1;
 	int breakDepth = 0;
 	String matName = "wooden";
 
-	public ItemHammer(ToolMaterial material, int radius, int depth) {
+	public ItemDrill(ToolMaterial material, int radius, int depth, int uses) {
 		super(material);
 		this.breakRadius = radius;
 		this.breakDepth = depth;
 
 		if (material == Refs.STARMETAL) {
 			this.matName = "starmetal";
-		} else if (material == ToolMaterial.WOOD) {
-			this.matName = "wooden";
 		} else if (material == ToolMaterial.STONE) {
 			this.matName = "stone";
 		} else if (material == ToolMaterial.IRON) {
@@ -36,10 +34,10 @@ public class ItemHammer extends ItemPickaxe {
 		} else if (material == ToolMaterial.DIAMOND) {
 			this.matName = "diamond";
 		}
-		this.setUnlocalizedName(this.matName + "_hammer");
-		this.setRegistryName(new ResourceLocation(Refs.MOD_ID, this.matName + "_hammer"));
+		this.setUnlocalizedName(this.matName + "_drill");
+		this.setRegistryName(new ResourceLocation(Refs.MOD_ID, this.matName + "_drill"));
 		this.setHarvestLevel("pickaxe", material.getHarvestLevel());
-		this.setMaxDamage(material.getMaxUses() + 500);
+		this.setMaxDamage(uses);
 	}
 
 	@Override
@@ -77,6 +75,7 @@ public class ItemHammer extends ItemPickaxe {
 						world.destroyBlock(pos, false);
 					} else {
 						world.destroyBlock(pos, true);
+						itemstack.damageItem(1, player);
 					}
 				for (int xPos = x - xRange; xPos <= x + xRange; xPos++)
 					for (int yPos = y - yRange; yPos <= y + yRange; yPos++)
