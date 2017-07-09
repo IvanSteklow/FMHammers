@@ -22,18 +22,18 @@ public class ItemHammer extends ItemPickaxe {
 		super(material);
 		this.breakRadius = radius;
 		this.breakDepth = depth;
-
-		if (material == Refs.STARMETAL) {
+		
+		if(material == Refs.STARMETAL){
 			this.matName = "starmetal";
-		} else if (material == ToolMaterial.WOOD) {
+		}else if(material == ToolMaterial.WOOD){
 			this.matName = "wooden";
-		} else if (material == ToolMaterial.STONE) {
+		}else if(material == ToolMaterial.STONE){
 			this.matName = "stone";
-		} else if (material == ToolMaterial.IRON) {
+		}else if(material == ToolMaterial.IRON){
 			this.matName = "iron";
-		} else if (material == ToolMaterial.GOLD) {
+		}else if(material == ToolMaterial.GOLD){
 			this.matName = "golden";
-		} else if (material == ToolMaterial.DIAMOND) {
+		}else if(material == ToolMaterial.DIAMOND){
 			this.matName = "diamond";
 		}
 		this.setUnlocalizedName(this.matName + "_hammer");
@@ -70,9 +70,7 @@ public class ItemHammer extends ItemPickaxe {
 				break;
 			}
 			if (!world.isRemote) {
-				if (world.getBlockState(pos).getBlock().canHarvestBlock(world, pos, player)
-						&& !(world.getBlockState(pos).getBlock() == Blocks.BEDROCK
-								|| world.getBlockState(pos).getBlock() == Blocks.BARRIER))
+				if (world.getBlockState(pos).getBlock().canHarvestBlock(world, pos, player) && !(world.getBlockState(pos).getBlock() == Blocks.BEDROCK || world.getBlockState(pos).getBlock() == Blocks.BARRIER))
 					if (player.isCreative()) {
 						world.destroyBlock(pos, false);
 					} else {
@@ -86,13 +84,12 @@ public class ItemHammer extends ItemPickaxe {
 							if (!super.onBlockStartBreak(itemstack, new BlockPos(xPos, yPos, zPos), player)) {
 								if (world.getBlockState(new BlockPos(xPos, yPos, zPos)).getBlock()
 										.canHarvestBlock(world, new BlockPos(xPos, yPos, zPos), player)
-										&& isEffective(world.getBlockState(new BlockPos(xPos, yPos, zPos)))
-										&& !(world.getBlockState(pos).getBlock() == Blocks.BEDROCK
-												|| world.getBlockState(pos).getBlock() == Blocks.BARRIER)) {
+										&& isEffective(world.getBlockState(new BlockPos(xPos, yPos, zPos)))) {
 									if (player.isCreative()) {
 										world.destroyBlock(new BlockPos(xPos, yPos, zPos), false);
 									} else {
 										world.destroyBlock(new BlockPos(xPos, yPos, zPos), true);
+										itemstack.damageItem(1, player);
 									}
 								}
 							}
